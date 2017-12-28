@@ -1,0 +1,5 @@
+D:\VS代码\Socket\SocketDemo\Server\Server\bin\Debug\Server.exe.config
+D:\VS代码\Socket\SocketDemo\Server\Server\bin\Debug\Server.exe
+D:\VS代码\Socket\SocketDemo\Server\Server\bin\Debug\Server.pdb
+D:\VS代码\Socket\SocketDemo\Server\Server\obj\Debug\Server.exe
+D:\VS代码\Socket\SocketDemo\Server\Server\obj\Debug\Server.pdb
