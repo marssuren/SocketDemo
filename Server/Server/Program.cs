@@ -70,7 +70,7 @@ namespace Server
 		{
 			switch(tProtocol)
 			{
-				case Protocol.Login:
+				case Protocol.Connect:
 				Console.WriteLine("todo:玩家登录回应");
 				break;
 				case Protocol.CreateRoom:
