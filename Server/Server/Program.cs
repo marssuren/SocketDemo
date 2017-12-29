@@ -62,8 +62,6 @@ namespace Server
 			int tLenght = tClientSocket.Receive(tBuffer);       //接收到数据的长度
 
 			Console.WriteLine("收到消息：" + Encoding.Default.GetString(tBuffer, 0, tLenght));
-
-
 			Protocol tProtocol;
 
 		}
