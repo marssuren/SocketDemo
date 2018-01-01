@@ -62,57 +62,57 @@ namespace Server
 			int tLenght = tClientSocket.Receive(tBuffer);       //接收到数据的长度
 
 			Console.WriteLine("收到消息：" + Encoding.Default.GetString(tBuffer, 0, tLenght));
-			Protocol tProtocol;
+            //Protocol tProtocol;
 
 		}
 
-		private static void onResponse()
-		{
-			switch(tProtocol)
-			{
-				case Protocol.Connect:
-				Console.WriteLine("todo:玩家登录回应");
-				break;
-				case Protocol.CreateRoom:
-				Console.WriteLine("todo:玩家创建房间回应");
+        //private static void onResponse()
+        //{
+        //    switch(tProtocol)
+        //    {
+        //        case Protocol.Connect:
+        //        Console.WriteLine("todo:玩家登录回应");
+        //        break;
+        //        case Protocol.CreateRoom:
+        //        Console.WriteLine("todo:玩家创建房间回应");
 
-				break;
-				case Protocol.EnterRoom:
-				Console.WriteLine("todo:玩家进入房间回应");
+        //        break;
+        //        case Protocol.EnterRoom:
+        //        Console.WriteLine("todo:玩家进入房间回应");
 
-				break;
-				case Protocol.Ready:
-				Console.WriteLine("todo:玩家准备回应");
+        //        break;
+        //        case Protocol.Ready:
+        //        Console.WriteLine("todo:玩家准备回应");
 
-				break;
-				case Protocol.StartGame:
-				Console.WriteLine("todo:玩家开始游戏回应");
+        //        break;
+        //        case Protocol.StartGame:
+        //        Console.WriteLine("todo:玩家开始游戏回应");
 
-				break;
-				case Protocol.DisbandRoom:
-				Console.WriteLine("todo:玩家解散房间回应");
+        //        break;
+        //        case Protocol.DisbandRoom:
+        //        Console.WriteLine("todo:玩家解散房间回应");
 
-				break;
-				case Protocol.CreateTeahouse:
-				Console.WriteLine("todo:玩家创建茶馆回应");
+        //        break;
+        //        case Protocol.CreateTeahouse:
+        //        Console.WriteLine("todo:玩家创建茶馆回应");
 
-				break;
-				case Protocol.EnterTeahouse:
-				Console.WriteLine("todo:玩家进入茶馆回应");
+        //        break;
+        //        case Protocol.EnterTeahouse:
+        //        Console.WriteLine("todo:玩家进入茶馆回应");
 
-				break;
-				case Protocol.CheckRecord:
-				Console.WriteLine("todo:玩家查看记录回应");
+        //        break;
+        //        case Protocol.CheckRecord:
+        //        Console.WriteLine("todo:玩家查看记录回应");
 
-				break;
-				case Protocol.LogOff:
-				Console.WriteLine("todo:玩家退出登录回应");
+        //        break;
+        //        case Protocol.LogOff:
+        //        Console.WriteLine("todo:玩家退出登录回应");
 
-				break;
-				default:
-				break;
-			}
-		}
+        //        break;
+        //        default:
+        //        break;
+        //    }
+        //}
 
 	}
 }
