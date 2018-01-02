@@ -1,1 +1,8 @@
 D:\VS代码\Socket\SocketDemo\Server\GameServer\bin\Debug\GameServer.exe.config
+D:\VS代码\Socket\SocketDemo\Server\GameServer\bin\Debug\GameServer.exe
+D:\VS代码\Socket\SocketDemo\Server\GameServer\bin\Debug\GameServer.pdb
+D:\VS代码\Socket\SocketDemo\Server\GameServer\bin\Debug\Server.exe
+D:\VS代码\Socket\SocketDemo\Server\GameServer\bin\Debug\Server.pdb
+D:\VS代码\Socket\SocketDemo\Server\GameServer\obj\Debug\GameServer.csprojResolveAssemblyReference.cache
+D:\VS代码\Socket\SocketDemo\Server\GameServer\obj\Debug\GameServer.exe
+D:\VS代码\Socket\SocketDemo\Server\GameServer\obj\Debug\GameServer.pdb

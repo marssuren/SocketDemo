@@ -18,7 +18,7 @@ namespace Server
 
         }
 
-        public SocketMessage(int _opCode, int _subCode, int _value)
+        public SocketMessage(int _opCode, int _subCode, object _value)
         {
             OPCode = _opCode;
             SubCode = _subCode;

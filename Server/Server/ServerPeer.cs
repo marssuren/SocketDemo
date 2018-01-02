@@ -39,6 +39,7 @@ namespace Server
                     tClientPeer = new ClientPeer();
                     tClientPeer.ReceiveArgs.Completed += receiveComplete;
                     tClientPeer.ReceiveCompletedDel += receiveCompleted;
+                    tClientPeer.SendDisconnect = Disconnect;
                     clientPeerPool.Enqueue(tClientPeer);
                 }
                 serverSocket.Listen(_maxCount);
@@ -61,12 +62,11 @@ namespace Server
                 _args = new SocketAsyncEventArgs();
                 _args.Completed += acceptComplete;
             }
-
             bool tResult = serverSocket.AcceptAsync(_args);     //基于封装IO,效率更高；返回值判断异步事件是否执行完毕，如果返回true，代表正在执行，执行完毕后会触发
             //如果返回false，代表已经执行完成，直接处理
             if (tResult == false)
             {
-
+                processAccept(_args);
             }
         }
         /// <summary>
@@ -105,7 +105,6 @@ namespace Server
             }
             catch (Exception _exception)
             {
-
                 Console.WriteLine(_exception.Message);
             }
         }
@@ -124,11 +123,11 @@ namespace Server
             {
                 if (tClientPeer.ReceiveArgs.SocketError == SocketError.Success)       //客户端主动断开连接
                 {
-
+                    Disconnect(tClientPeer,"客户端主动断开连接");
                 }
                 else       //由于网络异常导致被动断开连接
                 {
-                    //TODO
+                    Disconnect(tClientPeer,tClientPeer.ReceiveArgs.SocketError.ToString());
                 }
             }
 
@@ -147,10 +146,6 @@ namespace Server
         {
             //todo:给应用层，让其使用
         }
-        #endregion
-
-        #region 发送数据
-
         #endregion
 
         #region 断开连接
