@@ -17,6 +17,14 @@ namespace Server
         private Socket serverSocket;
         private Semaphore acceptSemaphore;      //限制客户端连接数量的信号量
         private ClientPeerPool clientPeerPool;
+        private IApplication application;       //应用层
+
+        public void SetApplication(IApplication _application)
+        {
+            application = _application;
+        }
+
+
         public ServerPeer()
         {
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -84,6 +92,7 @@ namespace Server
             //Socket tClientSocket = _args.AcceptSocket;      //得到客户端的对象
             ClientPeer tClientPeer = clientPeerPool.Dequeue();  //从连接池中获取对象
             tClientPeer.ClientSocket = _args.AcceptSocket;
+
             startReceive(tClientPeer);          //开始接受数据
             _args.AcceptSocket = null;
             startAccept(_args);
@@ -144,7 +153,8 @@ namespace Server
         /// <param name="_value">解析出来的具体能使用的类型</param>
         private void receiveCompleted(ClientPeer _clientPeer, SocketMessage _socketMessage)
         {
-            //todo:给应用层，让其使用
+            application.OnReceive(_clientPeer,_socketMessage);
+
         }
         #endregion
 
@@ -158,7 +168,9 @@ namespace Server
                 {
                     throw new Exception("当前指定的客户端连接对象为空，无法断开连接");
                 }
-                //todo：通知应用层，客户端断开连接了
+
+                application.OnDisConnect(_clientPeer);      //通知应用层，客户端断开连接了
+
                 _clientPeer.Disconnect();
                 clientPeerPool.Enqueue(_clientPeer);            //回收对象，方便下次使用
                 acceptSemaphore.Release();

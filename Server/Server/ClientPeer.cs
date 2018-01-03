@@ -83,6 +83,8 @@ namespace Server
             {
                 dataCache.Clear();//清空数据
                 isReceiveProcessing = false;
+                sendQueue.Clear();
+                isSendProcessing = false;
                 //todo:清空发送的数据
                 ClientSocket.Shutdown(SocketShutdown.Both);
                 ClientSocket.Close();
