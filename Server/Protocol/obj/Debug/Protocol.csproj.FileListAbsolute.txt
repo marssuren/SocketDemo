@@ -1,0 +1,4 @@
+D:\VS代码\Socket\SocketDemo\Server\Protocol\bin\Debug\Protocol.dll
+D:\VS代码\Socket\SocketDemo\Server\Protocol\bin\Debug\Protocol.pdb
+D:\VS代码\Socket\SocketDemo\Server\Protocol\obj\Debug\Protocol.dll
+D:\VS代码\Socket\SocketDemo\Server\Protocol\obj\Debug\Protocol.pdb
