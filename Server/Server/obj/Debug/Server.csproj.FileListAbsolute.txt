@@ -3,3 +3,10 @@ D:\VS代码\Socket\SocketDemo\Server\Server\bin\Debug\Server.exe
 D:\VS代码\Socket\SocketDemo\Server\Server\bin\Debug\Server.pdb
 D:\VS代码\Socket\SocketDemo\Server\Server\obj\Debug\Server.exe
 D:\VS代码\Socket\SocketDemo\Server\Server\obj\Debug\Server.pdb
+D:\Dev\Server\SocketDemo\Server\Server\bin\Debug\Server.exe.config
+D:\Dev\Server\SocketDemo\Server\Server\bin\Debug\Server.exe
+D:\Dev\Server\SocketDemo\Server\Server\bin\Debug\Server.pdb
+D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.exe
+D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.pdb

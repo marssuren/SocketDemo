@@ -6,3 +6,15 @@ D:\VS代码\Socket\SocketDemo\Server\GameServer\bin\Debug\Server.pdb
 D:\VS代码\Socket\SocketDemo\Server\GameServer\obj\Debug\GameServer.csprojResolveAssemblyReference.cache
 D:\VS代码\Socket\SocketDemo\Server\GameServer\obj\Debug\GameServer.exe
 D:\VS代码\Socket\SocketDemo\Server\GameServer\obj\Debug\GameServer.pdb
+D:\Dev\Server\SocketDemo\Server\GameServer\bin\Debug\GameServer.exe.config
+D:\Dev\Server\SocketDemo\Server\GameServer\bin\Debug\GameServer.exe
+D:\Dev\Server\SocketDemo\Server\GameServer\bin\Debug\GameServer.pdb
+D:\Dev\Server\SocketDemo\Server\GameServer\bin\Debug\Protocol.dll
+D:\Dev\Server\SocketDemo\Server\GameServer\bin\Debug\Server.exe
+D:\Dev\Server\SocketDemo\Server\GameServer\bin\Debug\Protocol.pdb
+D:\Dev\Server\SocketDemo\Server\GameServer\bin\Debug\Server.pdb
+D:\Dev\Server\SocketDemo\Server\GameServer\bin\Debug\Server.exe.config
+D:\Dev\Server\SocketDemo\Server\GameServer\obj\Debug\GameServer.csprojResolveAssemblyReference.cache
+D:\Dev\Server\SocketDemo\Server\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
+D:\Dev\Server\SocketDemo\Server\GameServer\obj\Debug\GameServer.exe
+D:\Dev\Server\SocketDemo\Server\GameServer\obj\Debug\GameServer.pdb
