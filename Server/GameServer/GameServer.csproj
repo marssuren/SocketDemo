@@ -54,6 +54,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Protocol\Protocol.csproj">
+      <Project>{c63cce99-c656-4b32-a5eb-9b6a133fe9ef}</Project>
+      <Name>Protocol</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{2ba22e39-1aa5-441c-8f96-5865d22ecf05}</Project>
       <Name>Server</Name>
