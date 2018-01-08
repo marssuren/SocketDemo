@@ -10,3 +10,5 @@ D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.csprojResolveAssemblyRef
 D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.exe
 D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.pdb
+G:\Dev\VSCode\SocketDemo\Server\Server\bin\Debug\Server.exe.config
+G:\Dev\VSCode\SocketDemo\Server\Server\obj\Debug\Server.exe
