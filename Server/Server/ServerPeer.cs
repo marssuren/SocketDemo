@@ -116,10 +116,12 @@ namespace Server
 			catch(Exception _exception)
 			{
 				Console.WriteLine(_exception.Message);
+				throw;
 			}
 		}
 		private void processReceive(SocketAsyncEventArgs _args)     //处理接收的请求
 		{
+			Console.WriteLine("Enter");
 			ClientPeer tClientPeer = _args.UserToken as ClientPeer;
 			if(tClientPeer.ReceiveArgs.SocketError == SocketError.Success && tClientPeer.ReceiveArgs.BytesTransferred > 0)//判断网络消息是否接收成功
 			{
