@@ -55,7 +55,7 @@ namespace Server
                 isReceiveProcessing = false;
                 return;
             }
-            SocketMessage tSocketMessage = EncodeTool.DecodeMessage(tData);      //todo:需要再次转成一个具体的类型供我们使用
+            SocketMessage tSocketMessage = EncodeTool.DecodeMessage(tData);     
 
             //回调给上层(sever端)
             if (null != ReceiveCompletedDel)
@@ -66,15 +66,15 @@ namespace Server
         }
         //粘包拆包问题：解决策略：消息头和消息尾
         //比如：发送的数据：12345
-        private void test()
-        {
-            byte[] tbytes = Encoding.Default.GetBytes("12345");
-            //消息头：消息的长度 int     bt.Length
-            //尾：具体的消息             bt
-            int tBytesLength = tbytes.Length;
-            byte[] tByteHead = BitConverter.GetBytes(tBytesLength);
+        //private void test()
+        //{
+        //    byte[] tbytes = Encoding.Default.GetBytes("12345");
+        //    //消息头：消息的长度 int     bt.Length
+        //    //尾：具体的消息             bt
+        //    int tBytesLength = tbytes.Length;
+        //    byte[] tByteHead = BitConverter.GetBytes(tBytesLength);
 
-        }
+        //}
 
         public void Disconnect() //断开连接
         {
@@ -84,7 +84,7 @@ namespace Server
                 isReceiveProcessing = false;
                 sendQueue.Clear();
                 isSendProcessing = false;
-                //todo:清空发送的数据
+
                 ClientSocket.Shutdown(SocketShutdown.Both);
                 ClientSocket.Close();
                 ClientSocket = null;
