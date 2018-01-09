@@ -18,23 +18,23 @@ namespace GameServer.Logic
 		{
 			switch(_subCode)
 			{
-				//case AccountCode.Regist_ClientReq:
-				//{
-				//	AccountDto tAccountDto = _value as AccountDto;
-				//	Console.WriteLine(tAccountDto.Account);
-				//	Console.WriteLine(tAccountDto.Password);
-				//}
+				case AccountCode.Regist_ClientReq:
+					{
+						AccountDto tAccountDto = _value as AccountDto;
+						Console.WriteLine(tAccountDto.Account);
+						Console.WriteLine(tAccountDto.Password);
+					}
+					break;
+				case AccountCode.Login:
+					{
+						AccountDto tAccountDto = _value as AccountDto;
+						Console.WriteLine(tAccountDto.Account);
+						Console.WriteLine(tAccountDto.Password);
+					}
+					break;
+				//case 0:
+				//	Console.WriteLine(_value.ToString());
 				//break;
-				//case AccountCode.Login:
-				//{
-				//	AccountDto tAccountDto = _value as AccountDto;
-				//	Console.WriteLine(tAccountDto.Account);
-				//	Console.WriteLine(tAccountDto.Password);
-				//}
-				//break;
-				case 0:
-					Console.WriteLine(_value.ToString());
-				break;
 				default:
 				break;
 			}

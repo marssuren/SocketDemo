@@ -4,8 +4,6 @@ D:\VS代码\Socket\SocketDemo\Server\Protocol\obj\Debug\Protocol.dll
 D:\VS代码\Socket\SocketDemo\Server\Protocol\obj\Debug\Protocol.pdb
 D:\Dev\Server\SocketDemo\Server\Protocol\bin\Debug\Protocol.dll
 D:\Dev\Server\SocketDemo\Server\Protocol\bin\Debug\Protocol.pdb
-D:\Dev\Server\SocketDemo\Server\Protocol\obj\Debug\Protocol.csprojResolveAssemblyReference.cache
-D:\Dev\Server\SocketDemo\Server\Protocol\obj\Debug\Protocol.csproj.CoreCompileInputs.cache
 D:\Dev\Server\SocketDemo\Server\Protocol\obj\Debug\Protocol.dll
 D:\Dev\Server\SocketDemo\Server\Protocol\obj\Debug\Protocol.pdb
 G:\Dev\VSCode\SocketDemo\Server\Protocol\bin\Debug\Protocol.dll
