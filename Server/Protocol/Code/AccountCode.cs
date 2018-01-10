@@ -8,11 +8,12 @@ namespace Protocol.Code
 	{
 		public const int Regist_ClientReq = 0;      //client request	//参数：AccountDto
 		public const int Regist_ServerRes = 1;      //server response
-		public const int Login = 2;                //登录的操作码		//参数：AccountDto
+		public const int Login_ClientReq = 2;       //登录的操作码		//参数：AccountDto
+		public const int Login_ServerRes = 3;		
 
-		public const int Ready_ClientReq = 101;		//客户端请求
+		public const int Ready_ClientReq = 101;     //客户端请求
 
-		public const int CreateRoom_ClientReq = 1000;		//客户端创建房间请求
-		public const int CreateRoom_ClientRes = 1001;		//服务器创建房间回应
+		public const int CreateRoom_ClientReq = 1000;       //客户端创建房间请求
+		public const int CreateRoom_ClientRes = 1001;       //服务器创建房间回应
 	}
 }

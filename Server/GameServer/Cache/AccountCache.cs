@@ -45,9 +45,16 @@ namespace GameServer.Cache
 		{
 			accountClientPeersDic.Add(_account, _clientPeer);
 		}
-		public void Offline(ClientPeer _clientPeer, string _account)
+		public void Offline(ClientPeer _clientPeer)
 		{
-			accountClientPeersDic.Remove(_account);
+			foreach (var item in accountClientPeersDic)
+			{
+				if (item.Value==_clientPeer)
+				{
+					accountClientPeersDic.Remove(item.Key);
+				}
+			}
+
 		}
 		public string GetId(ClientPeer _clientPeer)     //获取在线玩家的Id
 		{

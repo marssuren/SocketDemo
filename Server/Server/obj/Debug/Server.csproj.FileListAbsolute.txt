@@ -5,7 +5,6 @@ D:\VS代码\Socket\SocketDemo\Server\Server\obj\Debug\Server.exe
 D:\VS代码\Socket\SocketDemo\Server\Server\obj\Debug\Server.pdb
 D:\Dev\Server\SocketDemo\Server\Server\bin\Debug\Server.pdb
 D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
-D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.pdb
 G:\Dev\VSCode\SocketDemo\Server\Server\bin\Debug\Server.dll.config
 G:\Dev\VSCode\SocketDemo\Server\Server\bin\Debug\Server.dll
