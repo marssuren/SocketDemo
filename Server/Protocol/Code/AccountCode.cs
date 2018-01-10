@@ -11,5 +11,8 @@ namespace Protocol.Code
 		public const int Login = 2;                //登录的操作码		//参数：AccountDto
 
 		public const int Ready_ClientReq = 101;		//客户端请求
+
+		public const int CreateRoom_ClientReq = 1000;		//客户端创建房间请求
+		public const int CreateRoom_ClientRes = 1001;		//服务器创建房间回应
 	}
 }

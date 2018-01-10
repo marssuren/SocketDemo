@@ -19,7 +19,6 @@ D:\Dev\Server\SocketDemo\Server\GameServer\obj\Debug\GameServer.csproj.CoreCompi
 D:\Dev\Server\SocketDemo\Server\GameServer\obj\Debug\GameServer.exe
 D:\Dev\Server\SocketDemo\Server\GameServer\obj\Debug\GameServer.pdb
 G:\Dev\VSCode\SocketDemo\Server\GameServer\obj\Debug\GameServer.csprojResolveAssemblyReference.cache
-G:\Dev\VSCode\SocketDemo\Server\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
 G:\Dev\VSCode\SocketDemo\Server\GameServer\bin\Debug\Program.cs
 G:\Dev\VSCode\SocketDemo\Server\GameServer\bin\Debug\GameServer.exe.config
 G:\Dev\VSCode\SocketDemo\Server\GameServer\bin\Debug\GameServer.exe
@@ -28,6 +27,5 @@ G:\Dev\VSCode\SocketDemo\Server\GameServer\bin\Debug\Protocol.dll
 G:\Dev\VSCode\SocketDemo\Server\GameServer\bin\Debug\Server.dll
 G:\Dev\VSCode\SocketDemo\Server\GameServer\bin\Debug\Protocol.pdb
 G:\Dev\VSCode\SocketDemo\Server\GameServer\bin\Debug\Server.pdb
-G:\Dev\VSCode\SocketDemo\Server\GameServer\bin\Debug\Server.dll.config
 G:\Dev\VSCode\SocketDemo\Server\GameServer\obj\Debug\GameServer.exe
 G:\Dev\VSCode\SocketDemo\Server\GameServer\obj\Debug\GameServer.pdb

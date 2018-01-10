@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Server
 {
@@ -26,7 +27,6 @@ namespace Server
 
 		public ServerPeer()
 		{
-			serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 		}
 		/// <summary>
 		/// 开启服务器
@@ -37,10 +37,13 @@ namespace Server
 		{
 			try
 			{
+				serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
 				acceptSemaphore = new Semaphore(_maxCount, _maxCount);
-				serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
 				clientPeerPool = new ClientPeerPool(_maxCount);
 				ClientPeer tClientPeer = null;
+
+
 				for(int i = 0; i < _maxCount; i++)
 				{
 					tClientPeer = new ClientPeer();
@@ -49,6 +52,7 @@ namespace Server
 					tClientPeer.SendDisconnect = Disconnect;
 					clientPeerPool.Enqueue(tClientPeer);
 				}
+				serverSocket.Bind(new IPEndPoint(IPAddress.Any, _port));
 				serverSocket.Listen(_maxCount);
 				Console.WriteLine("服务器启动！");
 				startAccept(null);
@@ -70,8 +74,8 @@ namespace Server
 				_args.Completed += acceptComplete;
 			}
 			bool tResult = serverSocket.AcceptAsync(_args);     //基于封装IO,效率更高；返回值判断异步事件是否执行完毕，如果返回true，代表正在执行，执行完毕后会触发
-																//如果返回false，代表已经执行完成，直接处理
-			if(tResult == false)
+																
+			if(tResult == false)                                //如果返回false，代表已经执行完成，直接处理
 			{
 				processAccept(_args);
 			}
@@ -87,14 +91,31 @@ namespace Server
 		}
 		private void processAccept(SocketAsyncEventArgs _args)      //处理连接请求
 		{
-			acceptSemaphore.WaitOne();  //计数，限制线程的访问
-										//Socket tClientSocket = _args.AcceptSocket;      //得到客户端的对象
-			ClientPeer tClientPeer = clientPeerPool.Dequeue();  //从连接池中获取对象
+			//acceptSemaphore.WaitOne();  //计数，限制线程的访问
+			//							//Socket tClientSocket = _args.AcceptSocket;      //得到客户端的对象
+			//ClientPeer tClientPeer = clientPeerPool.Dequeue();  //从连接池中获取对象
+			//tClientPeer.ClientSocket = _args.AcceptSocket;
+
+			//Console.WriteLine("客户端连接成功 :" + tClientPeer.ClientSocket.RemoteEndPoint.ToString());
+
+			//startReceive(tClientPeer);          //开始接受数据
+			//_args.AcceptSocket = null;
+			//startAccept(_args);
+
+
+			//限制线程的访问
+			acceptSemaphore.WaitOne();
+
+			//得到客户端的对象 
+			//Socket clientSocket = e.AcceptSocket;
+			ClientPeer tClientPeer = clientPeerPool.Dequeue();
 			tClientPeer.ClientSocket = _args.AcceptSocket;
 
 			Console.WriteLine("客户端连接成功 :" + tClientPeer.ClientSocket.RemoteEndPoint.ToString());
 
-			startReceive(tClientPeer);          //开始接受数据
+			//开始接受数据
+			startReceive(tClientPeer);
+
 			_args.AcceptSocket = null;
 			startAccept(_args);
 		}
@@ -107,21 +128,21 @@ namespace Server
 		{
 			try
 			{
-				bool tResult = _clientPeer.ClientSocket.ReceiveAsync(_clientPeer.ReceiveArgs);
-				if(false == tResult)
+				bool result = _clientPeer.ClientSocket.ReceiveAsync(_clientPeer.ReceiveArgs);	//使用clientPeer中的Socket异步接收数据，放入clientPeer中的异步消息上下文对象中
+				if(result == false)
 				{
 					processReceive(_clientPeer.ReceiveArgs);
 				}
 			}
-			catch(Exception _exception)
+			catch(Exception e)
 			{
-				Console.WriteLine(_exception.Message);
+				Console.WriteLine(e.Message);
 				throw;
 			}
 		}
 		private void processReceive(SocketAsyncEventArgs _args)     //处理接收的请求
 		{
-			Console.WriteLine("Enter");
+			//Console.WriteLine("Enter");
 			ClientPeer tClientPeer = _args.UserToken as ClientPeer;
 			if(tClientPeer.ReceiveArgs.SocketError == SocketError.Success && tClientPeer.ReceiveArgs.BytesTransferred > 0)//判断网络消息是否接收成功
 			{
@@ -184,10 +205,13 @@ namespace Server
 			}
 		}
 		#endregion
+
+
 	}
-
-
-
-
-
 }
+
+
+
+
+
+
