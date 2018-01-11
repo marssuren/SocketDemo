@@ -37,14 +37,7 @@ namespace GameServer.Logic
 					login(_clientPeer, tAccountDto.Account, tAccountDto.Password);
 				}
 				break;
-				case AccountCode.CreateRoom_ClientReq:
-				{
-					Console.WriteLine("客户端请求创建房间" + _value);
-					RoomModel tRoomModel = Caches.Room.CreateNewRoom();
-					Console.WriteLine("创建的房间号为：" + tRoomModel.RoomId);
-					_clientPeer.Send(0, 1001, tRoomModel.RoomId);
-				}
-				break;
+
 			}
 
 
@@ -106,6 +99,7 @@ namespace GameServer.Logic
 				_clientPeer.Send(OpCode.ACCOUNT, AccountCode.Login_ServerRes, "登陆成功"); //登录成功
 			});
 		}
+		
 	}
 }
 

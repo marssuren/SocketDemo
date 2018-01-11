@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\AccountCode.cs" />
+    <Compile Include="Code\BattleCode.cs" />
     <Compile Include="Code\Dto\AccountDto.cs" />
     <Compile Include="Code\OpCode.cs" />
+    <Compile Include="Code\RoomCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

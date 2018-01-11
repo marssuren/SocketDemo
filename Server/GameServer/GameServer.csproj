@@ -35,6 +35,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,7 +52,9 @@
     <Compile Include="Cache\Caches.cs" />
     <Compile Include="Cache\RoomCache.cs" />
     <Compile Include="Logic\AccountHandler.cs" />
+    <Compile Include="Logic\BattleHandler.cs" />
     <Compile Include="Logic\IHandler.cs" />
+    <Compile Include="Logic\RoomHandler.cs" />
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\RoomModel.cs" />
     <Compile Include="NetMsgCenter.cs" />
