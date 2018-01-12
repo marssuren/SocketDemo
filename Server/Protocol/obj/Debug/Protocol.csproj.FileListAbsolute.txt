@@ -10,5 +10,4 @@ G:\Dev\VSCode\SocketDemo\Server\Protocol\bin\Debug\Protocol.dll
 G:\Dev\VSCode\SocketDemo\Server\Protocol\bin\Debug\Protocol.pdb
 G:\Dev\VSCode\SocketDemo\Server\Protocol\obj\Debug\Protocol.dll
 G:\Dev\VSCode\SocketDemo\Server\Protocol\obj\Debug\Protocol.pdb
-G:\Dev\VSCode\SocketDemo\Server\Protocol\obj\Debug\Protocol.csprojResolveAssemblyReference.cache
 D:\Dev\Server\SocketDemo\Server\Protocol\obj\Debug\Protocol.csprojResolveAssemblyReference.cache

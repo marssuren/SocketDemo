@@ -15,7 +15,7 @@ namespace GameServer.Cache
 		{
 			return inUseRoomsCache.ContainsKey(_roomId);
 		}
-		public RoomModel CreateNewRoom()                //创建新房间
+		public RoomModel CreateNewRoom(string _roomType, string _rule, bool _isFloatFlower, int _roundCount, string _payType)                //创建新房间
 		{
 			Random tRamdom = new Random();
 			RoomModel tRoomModel;
@@ -31,7 +31,7 @@ namespace GameServer.Cache
 				}
 				if(!inUseRoomsCache.ContainsKey(tRoomId))
 				{
-					tRoomModel = new RoomModel(tRoomId);
+					tRoomModel = new RoomModel(tRoomId, _roomType, _rule, _isFloatFlower, _roundCount, _payType);
 					Console.WriteLine("创建房间：" + tRoomId);
 					inUseRoomsCache.Add(tRoomId, tRoomModel);
 					break;
@@ -43,18 +43,36 @@ namespace GameServer.Cache
 		{
 			return inUseRoomsCache[_roomId];
 		}
+		public int GetRoomPlayerCount(string _roomId)    //获取房间内的玩家数量
+		{
+			return inUseRoomsCache[_roomId].PlayersList.Count;
+		}
+		public int GetFreeSeat(string _roomId)      //获取指定房间内一个空闲座位
+		{
+			for(int i = 0; i < inUseRoomsCache[_roomId].SeatsPlayersDic.Count; i++)
+			{
+				if(null == inUseRoomsCache[_roomId].SeatsPlayersDic[i])
+				{
+					return i;
+				}
+			}
+			return 5;
+		}
 		public void RemoveRoom(string _roomId)      //移除房间
 		{
 			Console.WriteLine("移除房间:" + _roomId);
 			inUseRoomsCache.Remove(_roomId);
 		}
-		public void EnterRoom(string _roomId, AccountModel _player)     //加入房间
+		public void EnterRoom(string _roomId, int _seatNumber, PlayerModel _player)     //加入房间
 		{
 			inUseRoomsCache[_roomId].PlayersList.Add(_player);
+			inUseRoomsCache[_roomId].SeatsPlayersDic[_seatNumber] = _player;	//玩家入座
 		}
-		public void ExitRoom(string _roomId,AccountModel _player)          //退出房间
+		public void ExitRoom(string _roomId, PlayerModel _player)          //退出房间
 		{
 			inUseRoomsCache[_roomId].PlayersList.Remove(_player);
+			inUseRoomsCache[_roomId].SeatsPlayersDic[_player.SeatNumber] = null;
+
 		}
 	}
 }

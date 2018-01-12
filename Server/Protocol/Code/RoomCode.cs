@@ -14,5 +14,11 @@ namespace Protocol.Code
 		public const int EnterRoom_FailServerRes = 1206;    //进入房间失败服务器回应
 		public const int ExitRoom_ClientReq = 1204;         //退出房间客户端请求
 		public const int ExitRoom_ServerRes = 1205;         //退出房间服务器回应
+		public const int RequestRoomPlayers_ClientReq = 1400;   //获取指定房间内玩家信息的客户端请求
+		public const int RequestRoomPlayers_ServerRes = 1401;   //获取指定房间内玩家信息的服务器回应
+
+
+
+
 	}
 }

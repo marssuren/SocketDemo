@@ -13,7 +13,7 @@ namespace GameServer
 {
 	public class NetMsgCenter : IApplication           //网络的消息中心,对服务器接收到的消息进行提前分类并转发(但是不处理)，交由帐号模块相应和处理
 	{
-		private IHandler account = new AccountHandler();
+		private IHandler account = new PlayerHandler();
 		private IHandler battle = new BattleHandler();
 		private IHandler room = new RoomHandler();
 		public void OnDisConnect(ClientPeer _clientPeer)
@@ -24,21 +24,20 @@ namespace GameServer
 
 		public void OnReceive(ClientPeer _clientPeer, SocketMessage _socketMessage)
 		{
-			string tJsonStr = "[{'number'='123456'}]";
-			JArray tJArray = (JArray)JsonConvert.DeserializeObject(tJsonStr);
-			JObject tJObject = (JObject) tJArray[1];
-			Console.WriteLine(tJObject["number"]);
+			string tJsonStr = _socketMessage.Value.ToString();
+			Console.WriteLine(tJsonStr);
+			JObject tJObject = (JObject)JsonConvert.DeserializeObject(tJsonStr);        //转化为JsonObject
+
 			switch(_socketMessage.OPCode)
 			{
-					
 				case OpCode.ACCOUNT:
-				account.OnReceive(_clientPeer, _socketMessage.SubCode, _socketMessage.Value);
+				account.OnReceive(_clientPeer, _socketMessage.SubCode, tJObject);
 				break;
 				case OpCode.ROOM:
-				room.OnReceive(_clientPeer, _socketMessage.SubCode, _socketMessage.Value);
+				room.OnReceive(_clientPeer, _socketMessage.SubCode, tJObject);
 				break;
 				case OpCode.BATTLE:
-				battle.OnReceive(_clientPeer, _socketMessage.SubCode, _socketMessage.Value);
+				battle.OnReceive(_clientPeer, _socketMessage.SubCode, tJObject);
 				break;
 				default:
 				break;

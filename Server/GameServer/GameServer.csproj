@@ -48,14 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\AccountCache.cs" />
+    <Compile Include="Cache\PlayerCache.cs" />
     <Compile Include="Cache\Caches.cs" />
     <Compile Include="Cache\RoomCache.cs" />
-    <Compile Include="Logic\AccountHandler.cs" />
+    <Compile Include="Logic\PlayerHandler.cs" />
     <Compile Include="Logic\BattleHandler.cs" />
     <Compile Include="Logic\IHandler.cs" />
     <Compile Include="Logic\RoomHandler.cs" />
-    <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\PlayerModel.cs" />
     <Compile Include="Model\RoomModel.cs" />
     <Compile Include="NetMsgCenter.cs" />
     <Compile Include="Program.cs">
