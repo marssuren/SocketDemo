@@ -51,6 +51,7 @@
     <Compile Include="Cache\PlayerCache.cs" />
     <Compile Include="Cache\Caches.cs" />
     <Compile Include="Cache\RoomCache.cs" />
+    <Compile Include="Cache\UserCache.cs" />
     <Compile Include="Logic\PlayerHandler.cs" />
     <Compile Include="Logic\BattleHandler.cs" />
     <Compile Include="Logic\IHandler.cs" />
