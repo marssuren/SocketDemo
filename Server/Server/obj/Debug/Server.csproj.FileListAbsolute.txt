@@ -14,3 +14,4 @@ G:\Dev\VSCode\SocketDemo\Server\Server\obj\Debug\Server.pdb
 D:\Dev\Server\SocketDemo\Server\Server\bin\Debug\Server.dll.config
 D:\Dev\Server\SocketDemo\Server\Server\bin\Debug\Server.dll
 D:\Dev\Server\SocketDemo\Server\Server\obj\Debug\Server.dll
+G:\Dev\VSCode\SocketDemo\Server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache

@@ -65,20 +65,21 @@ namespace GameServer.Logic
 			string tJsonStr = JsonConvert.SerializeObject(tServerResMsg);
 			_clientPeer.Send(OpCode.ROOM, RoomCode.CreateRoom_ServerRes, tJsonStr);
 		}
-		private void enterRoom(ClientPeer _clientPeer, string _roomId)			//进入房间
+		private void enterRoom(ClientPeer _clientPeer, string _roomId)          //进入房间
 		{
 			if(Caches.Room.IsRoomExist(_roomId))
 			{
-				if(Caches.Room.GetRoomPlayerCount(_roomId) < 4)					//房间内玩家数小于4
+				if(Caches.Room.GetRoomPlayerCount(_roomId) < 4)                 //房间内玩家数小于4
 				{
-					int tSeatNumber = Caches.Room.GetFreeSeat(_roomId);			//获取房间内空闲座位号
-					string tPlayerId = Caches.Player.GetId(_clientPeer);		//获取玩家Id
+					int tSeatNumber = Caches.Room.GetFreeSeat(_roomId);         //获取房间内空闲座位号
+					string tPlayerId = Caches.Player.GetId(_clientPeer);        //获取玩家Id
 					PlayerModel tPlayerModel = Caches.Player.GetPlayerModel(tPlayerId); //获取玩家
-					Caches.Room.EnterRoom(_roomId, tSeatNumber,tPlayerModel);	//玩家入座
+					Caches.Room.EnterRoom(_roomId, tSeatNumber, tPlayerModel);  //玩家入座
 
-
-
-					_clientPeer.Send(OpCode.ROOM, RoomCode.EnterRoom_SuccessServerRes, );
+					List<PlayerModel> tPlayerModels = Caches.Room.GetRoom(_roomId).PlayersList;//获取其他玩家信息发送给进入房间的玩家
+					string tStr = JsonConvert.SerializeObject(tPlayerModels);
+					Console.WriteLine(tStr);
+					_clientPeer.Send(OpCode.ROOM, RoomCode.EnterRoom_SuccessServerRes, tStr);
 				}
 				else
 				{

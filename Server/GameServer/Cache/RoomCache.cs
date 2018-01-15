@@ -58,6 +58,7 @@ namespace GameServer.Cache
 			}
 			return 5;
 		}
+		
 		public void RemoveRoom(string _roomId)      //移除房间
 		{
 			Console.WriteLine("移除房间:" + _roomId);
@@ -72,7 +73,6 @@ namespace GameServer.Cache
 		{
 			inUseRoomsCache[_roomId].PlayersList.Remove(_player);
 			inUseRoomsCache[_roomId].SeatsPlayersDic[_player.SeatNumber] = null;
-
 		}
 	}
 }

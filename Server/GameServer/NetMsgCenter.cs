@@ -30,7 +30,7 @@ namespace GameServer
 
 			switch(_socketMessage.OPCode)
 			{
-				case OpCode.ACCOUNT:
+				case OpCode.PLAYER:
 				account.OnReceive(_clientPeer, _socketMessage.SubCode, tJObject);
 				break;
 				case OpCode.ROOM:
