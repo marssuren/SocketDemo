@@ -11,7 +11,8 @@ namespace GameServer.Cache
 {
 	public class PlayerCache           //玩家信息缓存,后期转数据库处理
 	{
-		private Dictionary<string, PlayerModel> playerModelsDic = new Dictionary<string, PlayerModel>();      //玩家uid和帐号对应的数据模型的Dic
+		private Dictionary<string, PlayerModel> idModelsDic = new Dictionary<string, PlayerModel>();      //玩家uid和帐号对应的数据模型的Dic
+		private Dictionary<ClientPeer, string> clientIdDic = new Dictionary<ClientPeer, string>();  //玩家连接对象和uid的Dic
 		private ConcurrentInt id = new ConcurrentInt(-1);   //线程安全的自增
 		private Dictionary<string, ClientPeer> playerClientPeersDic = new Dictionary<string, ClientPeer>();            //帐号和帐号连接对象的Dic
 
@@ -26,16 +27,16 @@ namespace GameServer.Cache
 
 		public bool IsExist(string _uid)        //玩家是否存在
 		{
-			return playerModelsDic.ContainsKey(_uid);
+			return idModelsDic.ContainsKey(_uid);
 		}
-		public void CreatePlayer(string _uid,string _nickname)    //创建玩家数据模型信息		
+		public void CreatePlayer(string _uid, string _nickname)    //创建玩家数据模型信息		
 		{
-			PlayerModel tPlayer = new PlayerModel(id.AddGet().ToString(),_nickname);
-			playerModelsDic.Add(tPlayer.Id, tPlayer);
+			PlayerModel tPlayer = new PlayerModel(id.AddGet().ToString(), _nickname);
+			idModelsDic.Add(tPlayer.Id, tPlayer);
 		}
 		public PlayerModel GetPlayerModel(string _uid)        //获取玩家对应的数据模型
 		{
-			return playerModelsDic[_uid];
+			return idModelsDic[_uid];
 		}
 		public void Online(ClientPeer _clientPeer, string _uid) //用户上线
 		{
@@ -43,13 +44,18 @@ namespace GameServer.Cache
 		}
 		public void Offline(ClientPeer _clientPeer)
 		{
-			foreach (var item in playerClientPeersDic)
+			foreach(var item in playerClientPeersDic)
 			{
-				if (item.Value==_clientPeer)
+				if(item.Value == _clientPeer)
 				{
 					playerClientPeersDic.Remove(item.Key);
 				}
 			}
+		}
+		public PlayerModel GetModelById(string  _uid)     //根据玩家uid获取玩家数据模型
+		{
+			PlayerModel tPlayerModel = idModelsDic[_uid];
+			return tPlayerModel;
 		}
 		public string GetId(ClientPeer _clientPeer)     //获取在线玩家的Id
 		{

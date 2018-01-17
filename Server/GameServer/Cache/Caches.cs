@@ -8,12 +8,14 @@ namespace GameServer.Cache
 {
 	public class Caches
 	{
-		public static PlayerCache Player;        
+		public static PlayerCache Player;
 		public static RoomCache Room;
+		public static MatchCache Match;
 		static Caches()
 		{
 			Player = new PlayerCache();
 			Room = new RoomCache();
+			Match = new MatchCache();
 		}
 	}
 }

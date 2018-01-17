@@ -113,6 +113,7 @@ namespace GameServer.Logic
 					_clientPeer.Send(OpCode.PLAYER, PlayerCode.GetInfo_ServerRes, tStr);
 					return;
 				}
+				online(_clientPeer);
 				PlayerModel tPlayerModel = playerCache.GetPlayerModel(_uid);
 				tStr = JsonConvert.SerializeObject(tPlayerModel);
 				_clientPeer.Send(OpCode.PLAYER, PlayerCode.GetInfo_ServerRes, tStr);        //获取成功	

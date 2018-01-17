@@ -11,6 +11,8 @@ namespace Protocol.Code
 		//进入匹配队列
 		public const int EnterMatch_ClientReq = 1600;
 		public const int EnterMatch_ServerRes = 1601;
+
+		public const int EnterMatch_ServerBro = 1608;
 		//离开匹配队列
 		public const int LeaveMatch_ClientReq = 1602;
 		public const int LeaveMatch_ServerBro = 1603;
