@@ -10,7 +10,7 @@ namespace GameServer.Model
 	public class RoomModel
 	{
 
-		public string RoomId;   //房间号
+		public string RoomId;   //房间号,唯一标识
 		public string RoomContent;  //房间名
 		public string RoomType;     //房间类型(花麻将/百搭麻将)
 		public string Rule;     //规则(2摸3铳/3摸4铳)

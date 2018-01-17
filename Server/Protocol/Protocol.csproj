@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Dto\PlayerDto.cs" />
+    <Compile Include="Code\MatchCode.cs" />
     <Compile Include="Code\PlayerCode.cs" />
     <Compile Include="Code\BattleCode.cs" />
     <Compile Include="Code\Dto\AccountDto.cs" />

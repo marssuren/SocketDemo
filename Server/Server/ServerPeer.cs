@@ -162,9 +162,7 @@ namespace Server
 					Disconnect(tClientPeer, tClientPeer.ReceiveArgs.SocketError.ToString());
 				}
 			}
-
 		}
-
 		private void receiveComplete(object _sender, SocketAsyncEventArgs _args)    //当接收完成时触发的事件
 		{
 			processReceive(_args);
@@ -191,9 +189,7 @@ namespace Server
 				{
 					throw new Exception("当前指定的客户端连接对象为空，无法断开连接");
 				}
-
 				application.OnDisConnect(_clientPeer);      //通知应用层，客户端断开连接了
-
 				_clientPeer.Disconnect();
 				clientPeerPool.Enqueue(_clientPeer);            //回收对象，方便下次使用
 				acceptSemaphore.Release();
@@ -205,8 +201,6 @@ namespace Server
 			}
 		}
 		#endregion
-
-
 	}
 }
 
