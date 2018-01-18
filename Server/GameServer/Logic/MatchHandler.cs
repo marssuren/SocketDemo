@@ -18,19 +18,24 @@ namespace GameServer.Logic
 	public class MatchHandler : IHandler
 	{
 		private MatchCache matchCache = Caches.Match;
-		private PlayerCache userCache = Caches.Player;
+		private PlayerCache playerCache = Caches.Player;
 		public void OnDisconnect(ClientPeer _clientPeer)
 		{
+			string tUserId = playerCache.GetId(_clientPeer);
+			if(matchCache.IsMatching(Convert.ToInt16(tUserId)))
+			{
+				leave(_clientPeer);
+			}
 		}
 		public void OnReceive(ClientPeer _clientPeer, int _subCode, JObject _value)
 		{
 			switch(_subCode)
 			{
 				case MatchCode.EnterMatch_ClientReq:
-
+				enter(_clientPeer);
 				break;
 				case MatchCode.LeaveMatch_ClientReq:
-
+				leave(_clientPeer);
 				break;
 				case MatchCode.ReadyMatch_ClientReq:
 				break;
@@ -40,7 +45,11 @@ namespace GameServer.Logic
 		{
 			SingleExecute.Instance.Excute(delegate ()
 				{
-					int tUserId = Convert.ToInt16(userCache.GetId(_clientPeer));
+					if(!playerCache.IsOnline(_clientPeer))
+					{
+						return;
+					}
+					int tUserId = Convert.ToInt16(playerCache.GetId(_clientPeer));
 					if(matchCache.IsMatching(tUserId))      //检查用户是否已经在匹配
 					{
 						var tResponse = new
@@ -53,10 +62,38 @@ namespace GameServer.Logic
 						return;
 					}
 					MatchRoom tMatchRoom = matchCache.StartMatch(tUserId, _clientPeer);      //开始匹配
-					tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.EnterMatch_ServerBro, tUserId);//广播给房间内所有玩家,有新玩家加入
-					makeRoomDto(tMatchRoom);
+					tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.EnterMatch_ServerBro, tUserId);//广播给房间内除当前玩家以外的所有玩家,有新玩家加入
+					MatchRoomDto tMatchRoomDto = makeRoomDto(tMatchRoom);
+					string tStr = JsonConvert.SerializeObject(tMatchRoomDto);
+					_clientPeer.Send(OpCode.MATCH, MatchCode.EnterMatch_ServerRes, tStr);
 				}
 				);
+		}       //进入房间
+		private void leave(ClientPeer _clientPeer)          //离开房间
+		{
+			SingleExecute.Instance.Excute(delegate ()
+			{
+				int tUserID = Convert.ToInt16(playerCache.GetId(_clientPeer));
+				if(!matchCache.IsMatching(tUserID))     //用户没有匹配，无法退出
+				{
+					var tErrorMsg = new
+					{
+						ErrorMsg = "用户没有匹配，无法退出",
+					};
+					string tStr = JsonConvert.SerializeObject(tErrorMsg);
+					_clientPeer.Send(OpCode.MATCH, MatchCode.LeaveMatch_ServerBro, tStr);
+					return;
+				}
+				MatchRoom tMatchRoom = matchCache.LeaveMatch(tUserID, _clientPeer);       //正常离开
+																						  //广播给房间内所有人  有人离开了
+				var tResMsg = new
+				{
+					UserId = tUserID,
+				};
+				string tRes = JsonConvert.SerializeObject(tResMsg);
+				tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.LeaveMatch_ServerBro, Convert.ToInt16(tUserID), _clientPeer);    //广播给房间内所有人，参数：离开的玩家id
+
+			});
 		}
 		private MatchRoomDto makeRoomDto(MatchRoom _matchRoom)
 		{
@@ -64,7 +101,11 @@ namespace GameServer.Logic
 			MatchRoomDto tMatchRoomDto = new MatchRoomDto();
 			foreach(var item in tMatchRoomDto.UidUserDic.Keys)
 			{
-				PlayerModel tPlayerModel = userCache.GetPlayerModel(item.ToString());
+				if(!playerCache.IsOnline(item.ToString()))
+				{
+					continue;
+				}
+				PlayerModel tPlayerModel = playerCache.GetPlayerModel(item.ToString());
 				PlayerDto tPlayerDto = new PlayerDto(tPlayerModel.Nickname, tPlayerModel.Level, tPlayerModel.Exp);
 				tMatchRoomDto.UidUserDic.Add(item, tPlayerDto);  //将当前玩家加入到匹配房间的Dic中
 			}

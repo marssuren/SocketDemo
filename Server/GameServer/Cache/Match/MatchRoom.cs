@@ -50,7 +50,7 @@ namespace GameServer.Cache.Match
 		{
 			ReadyUIdLst.Add(_userId);
 		}
-		public void Broadcast(int _opCode, int _subCode, int _userId)   //广播给房间内所有人
+		public void Broadcast(int _opCode, int _subCode, int _userId,ClientPeer _clientPeer)   //广播给房间内所有人
 		{
 			foreach(var clientPeer in UidPeerDic.Values)
 			{
@@ -59,7 +59,10 @@ namespace GameServer.Cache.Match
 					UserId = _userId,
 				};
 				string tResStr = JsonConvert.SerializeObject(tRes);
-				clientPeer.Send(_opCode, _subCode, tResStr);
+				if(clientPeer!=_clientPeer)
+				{
+					clientPeer.Send(_opCode, _subCode, tResStr); 
+				}
 			}
 		}
 	}
