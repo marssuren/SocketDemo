@@ -120,6 +120,12 @@ namespace GameServer.Logic
 				}
 				MatchRoom tMatchRoom = matchCache.GetRoom(Convert.ToInt16(tUserId));
 				tMatchRoom.Ready(Convert.ToInt16(tUserId));
+				var tRes = new
+				{
+					uid = tUserId,
+				};
+				string tStr = JsonConvert.SerializeObject(tRes);
+				tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.ReadyMatch_ServerBro, tStr);	//广播当前准备的玩家
 				if(tMatchRoom.IsAllReady())    //检测是否所有玩家都准备了
 				{
 					var tResMsg = new
