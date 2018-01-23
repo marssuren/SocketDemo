@@ -16,10 +16,13 @@ namespace GameServer
 		private IHandler account = new PlayerHandler();
 		private IHandler battle = new BattleHandler();
 		private IHandler room = new RoomHandler();
+		private IHandler match = new MatchHandler();
 		public void OnDisConnect(ClientPeer _clientPeer)
 		{
 			account.OnDisconnect(_clientPeer);
 			battle.OnDisconnect(_clientPeer);
+			room.OnDisconnect(_clientPeer);
+			match.OnDisconnect(_clientPeer);
 		}
 
 		public void OnReceive(ClientPeer _clientPeer, SocketMessage _socketMessage)
@@ -38,6 +41,9 @@ namespace GameServer
 				break;
 				case OpCode.BATTLE:
 				battle.OnReceive(_clientPeer, _socketMessage.SubCode, tJObject);
+				break;
+				case OpCode.MATCH:
+				match.OnReceive(_clientPeer, _socketMessage.SubCode, tJObject);
 				break;
 				default:
 				break;

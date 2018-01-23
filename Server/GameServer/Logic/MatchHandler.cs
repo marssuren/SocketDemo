@@ -32,7 +32,7 @@ namespace GameServer.Logic
 			switch(_subCode)
 			{
 				case MatchCode.EnterMatch_ClientReq:
-				enter(_clientPeer);
+				enter(_clientPeer, Convert.ToInt16(_value["uid"]));
 				break;
 				case MatchCode.LeaveMatch_ClientReq:
 				leave(_clientPeer);
@@ -41,15 +41,21 @@ namespace GameServer.Logic
 				break;
 			}
 		}
-		private void enter(ClientPeer _clientPeer)
+		private void enter(ClientPeer _clientPeer, int _uid)
 		{
 			SingleExecute.Instance.Excute(delegate ()
 				{
-					if(!playerCache.IsOnline(_clientPeer))
+					if(!playerCache.IsOnline(_clientPeer))  //检查发送请求的客户端连接对象此时是否在线
 					{
 						return;
 					}
 					int tUserId = Convert.ToInt16(playerCache.GetId(_clientPeer));
+					if(_uid != tUserId)     //检查发送请求的id是否跟需要操作的id一致
+					{
+						return;
+					}
+
+					Console.WriteLine("用户请求匹配");
 					if(matchCache.IsMatching(tUserId))      //检查用户是否已经在匹配
 					{
 						var tResponse = new
@@ -92,7 +98,39 @@ namespace GameServer.Logic
 				};
 				string tRes = JsonConvert.SerializeObject(tResMsg);
 				tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.LeaveMatch_ServerBro, Convert.ToInt16(tUserID), _clientPeer);    //广播给房间内所有人，参数：离开的玩家id
+				if(tMatchRoom.IsEmpty())                 //如果该玩家离开匹配的房间后房间内无其他玩家
+				{
+					Caches.Match.Destroy(tMatchRoom);       //将房间回收至重用房间队列
+				}
 
+			});
+		}
+		private void ready(ClientPeer _clientPeer)          //准备
+		{
+			SingleExecute.Instance.Excute(() =>
+			{
+				if(!playerCache.IsOnline(_clientPeer))
+				{
+					return;
+				}
+				string tUserId = playerCache.GetId(_clientPeer);
+				if(!matchCache.IsMatching(Convert.ToInt16(tUserId)))
+				{
+					return;
+				}
+				MatchRoom tMatchRoom = matchCache.GetRoom(Convert.ToInt16(tUserId));
+				tMatchRoom.Ready(Convert.ToInt16(tUserId));
+				if(tMatchRoom.IsAllReady())    //检测是否所有玩家都准备了
+				{
+					var tResMsg = new
+					{
+						Response = "开始战斗",
+					};
+					tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.StartBattle_ServerBro, tResMsg);//通知房间内所有玩家 开始战斗
+					matchCache.Destroy(tMatchRoom); //销毁房间
+
+
+				}
 			});
 		}
 		private MatchRoomDto makeRoomDto(MatchRoom _matchRoom)

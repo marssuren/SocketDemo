@@ -52,11 +52,7 @@ namespace GameServer.Cache
 			MatchRoom tRoom = idModelDic[tRoomId];  //获取用户所属的匹配的房间
 			tRoom.Leave(_userId, _clientPeer);                   //用户离开所属的匹配的房间
 			uIdRoomIdDic.Remove(_userId);           //将玩家从匹配队列中移除
-			if(tRoom.IsEmpty())                 //如果该玩家离开匹配的房间后房间内无其他玩家
-			{
-				uIdRoomIdDic.Remove(tRoomId);       //将房间回收至重用房间队列
-				roomQueue.Enqueue(tRoom);
-			}
+			
 			return tRoom;
 		}
 		public bool IsMatching(int _userId)         //判断用户是否正在匹配房间内
