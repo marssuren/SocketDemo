@@ -24,20 +24,40 @@ namespace Protocol.Code.Dto
 			UidUserDic.Add(_newPlayer.Id, _newPlayer);
 			UidList.Add(_newPlayer.Id);
 		}
-		public void Leave(PlayerDto _player)	//移除玩家
+		public void Leave(PlayerDto _player)	//玩家离开
 		{
 			UidUserDic.Remove(_player.Id);
-
+			UidList.Remove(_player.Id);
 		}
 		public void Ready(int _uid)					//玩家准备
 		{
 			ReadyUidLst.Add(_uid);
 		}
-		public void ResetPosition()					//重置位置，在每次玩家进入或者离开房间的时候都需要调整玩家位置
+		public void ResetPosition(int _myUserId)					//重置位置，在每次玩家进入或者离开房间的时候都需要调整玩家位置
 		{
 			LeftPlayerId = -1;
 			RightPlayerId = -1;
 			OppsitePlayerId = -1;
+			if (UidList.Count==1)
+			{
+				return;
+			}
+
+			if (UidList.Count==2)
+			{
+				if (UidList[0]==_myUserId)
+				{
+					RightPlayerId = UidList[1];
+				}
+
+				if (UidList[1]==_myUserId)
+				{
+					
+				}
+				return;
+			}
+
+			
 		}
 	}
 }
