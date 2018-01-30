@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\ChatCode.cs" />
     <Compile Include="Code\Dto\MatchRoomDto.cs" />
     <Compile Include="Code\Dto\PlayerDto.cs" />
     <Compile Include="Code\MatchCode.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Code\Dto\AccountDto.cs" />
     <Compile Include="Code\OpCode.cs" />
     <Compile Include="Code\RoomCode.cs" />
+    <Compile Include="Constant\Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
