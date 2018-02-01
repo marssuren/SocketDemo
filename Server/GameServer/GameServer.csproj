@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\Battle\BattleRoom.cs" />
+    <Compile Include="Cache\Battle\LibraryModel.cs" />
     <Compile Include="Cache\MatchCache.cs" />
     <Compile Include="Cache\Match\MatchRoom.cs" />
     <Compile Include="Cache\PlayerCache.cs" />

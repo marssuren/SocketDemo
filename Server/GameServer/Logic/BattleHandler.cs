@@ -32,5 +32,9 @@ namespace GameServer.Logic
 
 			}));
 		}
+		public void StartBattle(List<int> _uidList)
+		{
+
+		}
 	}
 }

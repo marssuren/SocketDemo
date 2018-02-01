@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,13 @@ namespace GameServer.Cache.Match
 		{
 			ReadyUIdLst.Add(_userId);
 		}
+		public List<int> UIDList
+		{
+			get
+			{
+				return UidPeerDic.Keys.ToList();
+			}
+		}
 		public void Broadcast(int _opCode, int _subCode, int _userId, ClientPeer _clientPeer)   //广播给房间内所有人
 		{
 			foreach(var clientPeer in UidPeerDic.Values)
@@ -65,7 +73,7 @@ namespace GameServer.Cache.Match
 				}
 			}
 		}
-		public void Broadcast(int _opCode, int _subCode,object _value)
+		public void Broadcast(int _opCode, int _subCode, object _value)
 		{
 			string tStr = JsonConvert.SerializeObject(_value);
 			foreach(var clientPeer in UidPeerDic.Values)
@@ -73,5 +81,6 @@ namespace GameServer.Cache.Match
 				clientPeer.Send(_opCode, _subCode, tStr);
 			}
 		}
+
 	}
 }

@@ -14,17 +14,23 @@ namespace GameServer
 	public class NetMsgCenter : IApplication           //网络的消息中心,对服务器接收到的消息进行提前分类并转发(但是不处理)，交由帐号模块相应和处理
 	{
 		private IHandler account = new PlayerHandler();
-		private IHandler battle = new BattleHandler();
+		private BattleHandler battle = new BattleHandler();
 		private IHandler room = new RoomHandler();
-		private IHandler match = new MatchHandler();
+		private MatchHandler match = new MatchHandler();
 		private IHandler chat = new ChatHandler();
-		public void OnDisConnect(ClientPeer _clientPeer)
+
+		public NetMsgCenter()
 		{
-			account.OnDisconnect(_clientPeer);
+			match.OnBattleStart += battle.StartBattle;
+		}
+		public void OnDisConnect(ClientPeer _clientPeer)        //断线处理，先处理上层，再处理下层
+		{
 			battle.OnDisconnect(_clientPeer);
-			room.OnDisconnect(_clientPeer);
-			match.OnDisconnect(_clientPeer);
 			chat.OnDisconnect(_clientPeer);
+			match.OnDisconnect(_clientPeer);
+			room.OnDisconnect(_clientPeer);
+			account.OnDisconnect(_clientPeer);
+
 		}
 
 		public void OnReceive(ClientPeer _clientPeer, SocketMessage _socketMessage)

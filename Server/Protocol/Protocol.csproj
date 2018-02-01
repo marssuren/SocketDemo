@@ -42,17 +42,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\ChatCode.cs" />
+    <Compile Include="Code\Dto\BattleDto.cs" />
+    <Compile Include="Code\Dto\Battle\CardDto.cs" />
     <Compile Include="Code\Dto\MatchRoomDto.cs" />
-    <Compile Include="Code\Dto\PlayerDto.cs" />
+    <Compile Include="Code\Dto\Battle\PlayerDto.cs" />
     <Compile Include="Code\MatchCode.cs" />
     <Compile Include="Code\PlayerCode.cs" />
     <Compile Include="Code\BattleCode.cs" />
     <Compile Include="Code\Dto\AccountDto.cs" />
     <Compile Include="Code\OpCode.cs" />
     <Compile Include="Code\RoomCode.cs" />
+    <Compile Include="Constant\CardColor.cs" />
     <Compile Include="Constant\Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

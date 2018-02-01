@@ -15,8 +15,10 @@ using Server;
 
 namespace GameServer.Logic
 {
+	public delegate void StartBattleDel(List<int> _uidList);     //使用中介者模式
 	public class MatchHandler : IHandler
 	{
+		public StartBattleDel OnBattleStart;
 		private MatchCache matchCache = Caches.Match;
 		private PlayerCache playerCache = Caches.Player;
 		public void OnDisconnect(ClientPeer _clientPeer)
@@ -125,13 +127,14 @@ namespace GameServer.Logic
 					uid = tUserId,
 				};
 				string tStr = JsonConvert.SerializeObject(tRes);
-				tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.ReadyMatch_ServerBro, tStr);	//广播当前准备的玩家
+				tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.ReadyMatch_ServerBro, tStr);   //广播当前准备的玩家
 				if(tMatchRoom.IsAllReady())    //检测是否所有玩家都准备了
 				{
 					var tResMsg = new
 					{
 						Response = "开始战斗",
 					};
+					startFight(tMatchRoom.UIDList);
 					tMatchRoom.Broadcast(OpCode.MATCH, MatchCode.StartBattle_ServerBro, tResMsg);//通知房间内所有玩家 开始战斗
 					matchCache.Destroy(tMatchRoom); //销毁房间
 
