@@ -53,6 +53,7 @@
     <Compile Include="Code\OpCode.cs" />
     <Compile Include="Code\RoomCode.cs" />
     <Compile Include="Constant\CardColor.cs" />
+    <Compile Include="Constant\CardWeight.cs" />
     <Compile Include="Constant\Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

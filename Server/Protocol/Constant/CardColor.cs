@@ -12,5 +12,6 @@ namespace Protocol.Constant
 		public const int TIAO = 2;      //条
 		public const int BING = 3;      //饼
 		public const int FLOWER = 4;    //花
+		public const int Wind = 5;      //风将
 	}
 }

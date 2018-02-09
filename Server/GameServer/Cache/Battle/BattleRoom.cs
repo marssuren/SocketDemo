@@ -19,5 +19,10 @@ namespace GameServer.Cache.Battle
 			get;
 			set;
 		}
+
+		public LibraryModel LibraryModel;       //牌库
+		public List<CardDto> TableCardLst;      //桌上的牌
+		public int Multiple;                    //倍数
+		public RoundModel FightRoundModel;      //回合管理对象
 	}
 }
